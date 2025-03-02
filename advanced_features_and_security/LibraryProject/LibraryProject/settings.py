@@ -134,3 +134,27 @@ class SomeModel(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.some_field}"
+    
+    # Disable debug mode in production
+DEBUG = False  # Ensure this is False in production
+
+# Security headers
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enforce HTTPS for cookies
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Content Security Policy (CSP) - Restrict sources
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://trusted-scripts.com")  # Example: allow specific domains
+CSP_STYLE_SRC = ("'self'", "https://trusted-styles.com")
+
+# Ensure you have django-csp installed
+INSTALLED_APPS += ["csp"]
+
+MIDDLEWARE += [
+    "csp.middleware.CSPMiddleware",
+]
