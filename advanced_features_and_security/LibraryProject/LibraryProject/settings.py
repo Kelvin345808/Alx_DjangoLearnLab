@@ -168,3 +168,6 @@ SECURE_HSTS_PRELOAD = True  # Allow browser preloading
 # Secure cookies
 SESSION_COOKIE_SECURE = True  # Only transmit session cookies over HTTPS
 CSRF_COOKIE_SECURE = True  # Only transmit CSRF cookies over HTTPS
+
+# Trust headers from a reverse proxy (e.g., Nginx, AWS ELB)
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
