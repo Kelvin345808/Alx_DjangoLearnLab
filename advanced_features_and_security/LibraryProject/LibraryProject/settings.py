@@ -158,3 +158,13 @@ INSTALLED_APPS += ["csp"]
 MIDDLEWARE += [
     "csp.middleware.CSPMiddleware",
 ]
+
+# Enforce HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect HTTP to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # Enable HSTS for 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow browser preloading
+
+# Secure cookies
+SESSION_COOKIE_SECURE = True  # Only transmit session cookies over HTTPS
+CSRF_COOKIE_SECURE = True  # Only transmit CSRF cookies over HTTPS
